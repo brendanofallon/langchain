@@ -77,7 +77,7 @@ def _get_llm_math(llm: BaseLLM) -> BaseTool:
 
 
 def _get_open_meteo_api(llm: BaseLLM) -> BaseTool:
-    chain = APIChain.from_llm_and_api_docs(llm, open_meteo_docs.OPEN_METEO_DOCS)
+    chain = APIChain.from_llm_and_api_docs(llm, open_meteo_docs.OPEN_METEO_DOCS_LONG)
     return Tool(
         name="Open Meteo API",
         description="Useful for when you want to get weather information from the OpenMeteo API. The input should be a question in natural language that this API can answer.",
