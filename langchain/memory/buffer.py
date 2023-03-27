@@ -101,11 +101,14 @@ class SerializingConversationMemory(BaseChatMemory, BaseModel):
     ai_prefix: str = "AI"
     memory_key: str = "history"  #: :meta private:
     chat_log_file: str = "chat_log.log"
+    context_msgs: int = 4
 
     @property
     def buffer(self) -> Any:            
         # Blow away existing memory? - can something else add memories we're not aware of?
         self.chat_memory = self._load_messages()
+        self.chat_memory.messages = self.chat_memory.messages[-self.context_msgs:]
+
         if self.return_messages:
             return self.chat_memory.messages
         else:
@@ -159,6 +162,11 @@ class SerializingConversationMemory(BaseChatMemory, BaseModel):
             output_key = self.output_key
         self.chat_memory.add_user_message(inputs[prompt_input_key])
         self.chat_memory.add_ai_message(outputs[output_key])
+        self._write_messages()
+
+    def add_score(self, score):
+        self.chat_memory = self._load_messages()
+        self.chat_memory.messages[-1].additional_kwargs['score'] = score
         self._write_messages()
 
     @property

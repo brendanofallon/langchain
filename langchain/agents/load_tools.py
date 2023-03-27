@@ -39,8 +39,9 @@ def _get_requests() -> BaseTool:
 def _get_terminal() -> BaseTool:
     return Tool(
         name="Terminal",
-        description="Executes commands in a terminal. Input should be valid commands, and the output will be any output from running that command.",
+        description="Executes commands in a Zsh shell running on MacOS. Input should be valid commands, and the output will be any output from running that command.",
         func=BashProcess().run,
+        return_direct=False,
     )
 
 

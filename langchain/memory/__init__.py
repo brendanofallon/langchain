@@ -1,6 +1,7 @@
 from langchain.memory.buffer import (
     ConversationBufferMemory,
     ConversationStringBufferMemory,
+    SerializingConversationMemory,
 )
 from langchain.memory.buffer_window import ConversationBufferWindowMemory
 from langchain.memory.chat_memory import ChatMessageHistory
@@ -26,4 +27,5 @@ __all__ = [
     "ConversationStringBufferMemory",
     "ReadOnlySharedMemory",
     "ConversationTokenBufferMemory",
+    "SerializingConversationMemory",
 ]

@@ -94,7 +94,14 @@ def completion_with_retry(llm: Union[BaseOpenAI, OpenAIChat], **kwargs: Any) -> 
 
     @retry_decorator
     def _completion_with_retry(**kwargs: Any) -> Any:
-        return llm.client.create(**kwargs)
+        try:
+            print(f"Calling agent with kwargs: {kwargs}")
+            response = llm.client.create(**kwargs)
+            return response
+        except Exception as ex:
+            print(f"Dang: {ex}")
+            raise ex
+
 
     return _completion_with_retry(**kwargs)
 
