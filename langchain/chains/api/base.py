@@ -23,6 +23,9 @@ class APIChain(Chain, BaseModel):
     question_key: str = "question"  #: :meta private:
     output_key: str = "output"  #: :meta private:
 
+    def __str__(self):
+        return f"{self._chain_type} : "
+
     @property
     def input_keys(self) -> List[str]:
         """Expect input key.
