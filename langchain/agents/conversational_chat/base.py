@@ -39,10 +39,12 @@ class AgentOutputParser(BaseOutputParser):
         cleaned_output = text.strip()
         if "```json" in cleaned_output:
             _, cleaned_output = cleaned_output.split("```json")
+            cleaned_output = cleaned_output.rsplit("```", maxsplit=1)[0]
         if "```" in cleaned_output:
             cleaned_output, _ = cleaned_output.split("```")
         if cleaned_output.startswith("```json"):
             cleaned_output = cleaned_output[len("```json") :]
+        cleaned_output = cleaned_output.strip("```")
         if cleaned_output.startswith("```"):
             cleaned_output = cleaned_output[len("```") :]
         if cleaned_output.endswith("```"):
@@ -105,8 +107,8 @@ class ConversationalChatAgent(Agent):
         try:
             response = self.output_parser.parse(llm_output)
             return response["action"], response["action_input"]
-        except Exception:
-            raise ValueError(f"Could not parse LLM output: {llm_output}")
+        except Exception as ex:
+            raise ValueError(f"Could not parse LLM output: {llm_output}\n Exception: {ex}")
 
     def _construct_scratchpad(
         self, intermediate_steps: List[Tuple[AgentAction, str]]
@@ -155,3 +157,10 @@ class ConversationalChatAgent(Agent):
             output_parser=_output_parser,
             **kwargs,
         )
+
+if __name__=="__main__":
+    p = AgentOutputParser()
+    r = p.parse("""{
+    "action": "Final Answer",
+    "action_input": "blarf"}""")
+    print(r)

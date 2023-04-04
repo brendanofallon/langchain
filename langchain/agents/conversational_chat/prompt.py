@@ -29,7 +29,7 @@ Use this if you want to respond directly to the human. Markdown code snippet for
 
 SUFFIX = """TOOLS
 ------
-Assistant can ask the user to use tools to look up information that may be helpful in answering the users original question. The tools the human can use are:
+Assistant can ask the user to use tools to look up information that may be helpful in answering the users original question. If human asks for python code or terminal commands, no tools and Assistant should generate the response directly. The tools the human can use are:
 
 {{tools}}
 
@@ -49,3 +49,5 @@ USER'S INPUT
 --------------------
 
 What is the response to my original question? If using information from tools, you must say it explicitly - I have forgotten all TOOL RESPONSES! Respond with a markdown code snippet of a json blob with a single action, and NOTHING else."""
+
+FINAL_FORMAT="""Surround any shell code with ```shell (shell code goes in here) ``` and all python code with ```python (python code here)```"""
