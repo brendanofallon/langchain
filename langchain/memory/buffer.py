@@ -2,14 +2,14 @@ from typing import Any, Dict, List, Optional
 import json
 from pathlib import Path
 
-from pydantic import BaseModel, root_validator
+from pydantic import root_validator
 
 from langchain.memory.chat_memory import BaseChatMemory, BaseMemory, ChatMessageHistory
 from langchain.memory.utils import get_prompt_input_key
 from langchain.schema import get_buffer_string, HumanMessage, AIMessage, SystemMessage, ChatMessage
 
 
-class ConversationBufferMemory(BaseChatMemory, BaseModel):
+class ConversationBufferMemory(BaseChatMemory):
     """Buffer for storing conversation memory."""
 
     human_prefix: str = "Human"
@@ -41,7 +41,7 @@ class ConversationBufferMemory(BaseChatMemory, BaseModel):
         return {self.memory_key: self.buffer}
 
 
-class ConversationStringBufferMemory(BaseMemory, BaseModel):
+class ConversationStringBufferMemory(BaseMemory):
     """Buffer for storing conversation memory."""
 
     human_prefix: str = "Human"
