@@ -115,6 +115,11 @@ class ConversationalChatAgent(Agent):
     ) -> List[BaseMessage]:
         """Construct the scratchpad that lets the agent continue its thought process."""
         thoughts: List[BaseMessage] = []
+
+        tot = sum(len(action.log) + len(observation) for action, observation in intermediate_steps)
+        if tot > 5000:
+            intermediate_steps = intermediate_steps[-3:]
+
         for action, observation in intermediate_steps:
             thoughts.append(AIMessage(content=action.log))
             human_message = HumanMessage(

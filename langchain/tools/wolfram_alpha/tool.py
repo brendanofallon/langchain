@@ -10,8 +10,7 @@ class WolframAlphaQueryRun(BaseTool):
     name = "Wolfram Alpha"
     description = (
         "A wrapper around Wolfram Alpha. "
-        "Useful for when you need to answer questions about Math, "
-        "Science, Technology, Culture, Society and Everyday Life. "
+        "Useful for when you need to answer numerical questions about math and science involving complex reasoning."
         "Input should be a search query."
     )
     api_wrapper: WolframAlphaAPIWrapper

@@ -94,7 +94,7 @@ class ConversationStringBufferMemory(BaseMemory):
 
 
 
-class SerializingConversationMemory(BaseChatMemory, BaseModel):
+class SerializingConversationMemory(BaseChatMemory):
     """Buffer for storing conversation memory."""
 
     human_prefix: str = "Human"

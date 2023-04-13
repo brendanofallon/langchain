@@ -12,7 +12,7 @@ class WikipediaQueryRun(BaseTool):
         "A wrapper around Wikipedia. "
         "Useful for when you need to answer general questions about "
         "people, places, companies, historical events, or other subjects. "
-        "Input should be a search query."
+        "Input should be a single name, title, location or subject."
     )
     api_wrapper: WikipediaAPIWrapper
 
