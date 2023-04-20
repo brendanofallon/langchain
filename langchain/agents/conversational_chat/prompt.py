@@ -6,6 +6,7 @@ FORMAT_INSTRUCTIONS = """RESPONSE FORMAT INSTRUCTIONS
 
 When responding to me use one of the two formats:
 
+
 **Option 1:**
 Use this only if you don't know the answer and want the human to use a tool.
 Markdown code snippet formatted in the following schema:
